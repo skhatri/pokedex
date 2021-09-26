@@ -1,0 +1,5 @@
+.idea
+bazel-*
+server/server
+vendor
+

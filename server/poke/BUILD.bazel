@@ -1,0 +1,12 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "poke",
+    srcs = ["pokedex.go", "api.go"],
+    importpath = "github.com/skhatri/pokedex/server/poke",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//server/vendor/github.com/skhatri/api-router-go/router",
+        "//server/vendor/github.com/skhatri/api-router-go/router/model",
+    ],
+)
