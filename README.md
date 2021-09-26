@@ -44,7 +44,7 @@ The following endpoints will be available:
 Following Questions will be answered and asserted in the tests we write for each client.
 
 1. What is the ability of Mimikyu?
-2. How many dragon type pokemons are there?
+2. How many pokemons are both flying and water type?
 3. What is the name of the pokemon that is of type bug and ghost and has the lowest HP?
 4. What is the type of pokemon is Zeraora?
 
@@ -57,3 +57,9 @@ The following clients are implemented:
 #### java
 
 #### golang
+the go-client is implemented in go-client
+
+Run tests using
+```
+bazel test //go-client/api:api_test
+```

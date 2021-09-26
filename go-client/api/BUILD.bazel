@@ -1,0 +1,20 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "api",
+    srcs = [
+        "httpclient.go",
+        "pokeclient.go",
+    ],
+    importpath = "github.com/skhatri/pokedex/go-client/api",
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "api_test",
+    srcs = ["pokeclient_test.go"],
+    data = [
+        "//client-data:client-data",
+    ],
+    embed = [":api"],
+)

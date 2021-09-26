@@ -5,7 +5,7 @@ go_library(
     srcs = ["client.go"],
     importpath = "github.com/skhatri/pokedex/go-client",
     visibility = ["//visibility:private"],
-    deps = ["@com_github_google_uuid//:uuid"],
+    deps = ["//go-client/api"],
 )
 
 go_binary(

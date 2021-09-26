@@ -1,4 +1,4 @@
-module go-client
+module github.com/skhatri/pokedex/go-client
 
 go 1.17
 

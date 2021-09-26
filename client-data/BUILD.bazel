@@ -1,0 +1,5 @@
+filegroup(
+  name = 'client-data',
+  srcs = glob(['*']),
+  visibility = ["//visibility:public"],
+)
