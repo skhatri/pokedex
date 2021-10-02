@@ -55,6 +55,13 @@ The following clients are implemented:
 
 
 #### java
+External Jvm Rules have been imported to handle maven dependencies. 
+
+Query Dependency Name with
+```
+bazel query @maven//:all --output=build
+```
+
 
 #### golang
 the go-client is implemented in go-client
@@ -62,4 +69,8 @@ the go-client is implemented in go-client
 Run tests using
 ```
 bazel test //go-client/api:api_test
+```
+
+```
+bazel coverage  --combined_report=lcov -- //...:all
 ```

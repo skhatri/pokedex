@@ -1,0 +1,65 @@
+
+java_library(
+    name = "client_lib",
+
+    srcs = glob(include = [
+                   "com/*.java",
+                   "com/api/*.java",
+               ], exclude = [
+                   "com/*Test.java",
+                   "com/api/*Test.java",
+               ]),
+    visibility = ["//visibility:private"],
+    deps = [
+        "@java_client//:com_fasterxml_jackson_core_jackson_databind",
+        "@java_client//:com_fasterxml_jackson_core_jackson_core",
+        "@java_client//:com_fasterxml_jackson_core_jackson_annotations",
+        "@java_client//:com_squareup_okhttp3_okhttp",
+    ],
+)
+
+java_binary(
+    name = "com.Client",
+    runtime_deps = [
+        ":client_lib",
+    ],
+)
+
+
+java_library(
+    name="client_lib_test",
+    srcs = glob([
+      "com/*Test.java",
+      "com/api/*Test.java",
+    ]),
+    deps = [
+        "@java_client//:org_junit_vintage_junit_vintage_engine",
+        "@java_client//:org_junit_jupiter_junit_jupiter_params",
+        "@java_client//:org_junit_jupiter_junit_jupiter_engine",
+        "@java_client//:org_junit_jupiter_junit_jupiter_api",
+        "@java_client//:org_hamcrest_hamcrest_core",
+         ":client_lib"
+    ],
+)
+
+java_test(
+    name="client_test",
+    runtime_deps = [":client_lib_test",
+        "@java_client//:org_junit_platform_junit_platform_suite_commons",
+         "@java_client//:org_junit_platform_junit_platform_suite_api",
+         "@java_client//:org_junit_platform_junit_platform_console",
+         "@java_client//:org_junit_platform_junit_platform_runner",
+         "@java_client//:org_junit_platform_junit_platform_launcher",
+         "@java_client//:org_junit_platform_junit_platform_engine",
+         "@java_client//:org_junit_platform_junit_platform_commons",
+    ],
+    srcs = glob([
+        "*.java",
+    ]),
+    use_testrunner = False,
+    main_class = "org.junit.platform.console.ConsoleLauncher",
+    args = ["--select-package", "com"],
+    data = [
+        "//client-data",
+    ],
+)

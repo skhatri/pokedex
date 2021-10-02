@@ -60,3 +60,43 @@ load(
 )
 
 _go_image_repos()
+
+
+
+
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+RULES_JVM_EXTERNAL_TAG = "4.1"
+RULES_JVM_EXTERNAL_SHA = "f36441aa876c4f6427bfb2d1f2d723b48e9d930b62662bf723ddfb8fc80f0140"
+http_archive(
+    name = "rules_jvm_external",
+    strip_prefix = "rules_jvm_external-%s" % RULES_JVM_EXTERNAL_TAG,
+    sha256 = RULES_JVM_EXTERNAL_SHA,
+    url = "https://github.com/bazelbuild/rules_jvm_external/archive/%s.zip" % RULES_JVM_EXTERNAL_TAG,
+)
+
+
+load("@rules_jvm_external//:defs.bzl", "maven_install")
+
+maven_install(
+    name = "java_client",
+    artifacts = [
+        "org.junit.jupiter:junit-jupiter-api:5.8.1",
+        "org.junit.jupiter:junit-jupiter-engine:5.8.1",
+        "org.junit.jupiter:junit-jupiter-params:5.8.1",
+        "org.junit.vintage:junit-vintage-engine:5.8.1",
+        "org.junit.platform:junit-platform-commons:1.8.1",
+        "org.junit.platform:junit-platform-console:1.8.1",
+        "org.junit.platform:junit-platform-runner:1.8.1",
+        "org.junit.platform:junit-platform-launcher:1.8.1",
+        "org.junit.platform:junit-platform-engine:1.8.1",
+
+        "com.fasterxml.jackson.core:jackson-core:2.12.5",
+        "com.fasterxml.jackson.core:jackson-databind:2.12.5",
+
+        "com.squareup.okhttp3:okhttp:4.9.2",
+    ],
+    repositories = [
+        "https://repo1.maven.org/maven2",
+    ],
+)

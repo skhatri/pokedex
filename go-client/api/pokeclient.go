@@ -81,7 +81,11 @@ func (pc *_pokedexClient) FindPokemonByName(name string) (*Pokemon, error) {
 	}
 	result := Result{}
 	httpResponse.ToData(&result)
-	return &result.Data[0], nil
+	var pokemon *Pokemon = nil
+	if len(result.Data) > 0 {
+		pokemon = &result.Data[0]
+	}
+	return pokemon, nil
 }
 
 func (pc *_pokedexClient) FindPokemonsByType(typeName []string) ([]Pokemon, error) {
