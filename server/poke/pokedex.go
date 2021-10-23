@@ -70,7 +70,7 @@ type Pokemon struct {
 var pokedex = func() *Pokedex {
 	datasetDir := os.Getenv("DATASET_DIR")
 	if datasetDir == "" {
-		datasetDir = "../server/dataset"
+		datasetDir = "./client-data"
 	}
 	fp, err := os.OpenFile(fmt.Sprintf("%s/pokedex_0520.csv", datasetDir), os.O_RDONLY, os.ModePerm)
 	if err != nil {

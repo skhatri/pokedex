@@ -10,6 +10,7 @@ go_library(
         "//server/poke",
         "//server/vendor/github.com/skhatri/api-router-go/router",
     ],
+    data = ["//client-data"],
 )
 
 go_binary(
