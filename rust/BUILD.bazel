@@ -1,0 +1,15 @@
+load("@rules_rust//rust:rust.bzl", "rust_binary")
+load("@rules_rust//rust:rust.bzl", "rust_library")
+
+package(default_visibility = ["//visibility:public"])
+
+rust_library(
+    name = "rust-client_lib",
+    srcs = ["src/api/pokeclient.rs"],
+)
+
+rust_binary(
+    name = "rust-client",
+    srcs = ["src/client.rs"],
+    deps = [":rust-client_lib"],
+)
