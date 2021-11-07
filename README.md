@@ -74,3 +74,9 @@ bazel test //go-client/api:api_test
 ```
 bazel coverage  --combined_report=lcov -- //...:all
 ```
+
+#### rust
+
+```
+bazel run //rust:rust-client
+```

@@ -1,0 +1,22 @@
+load("@rules_rust//rust:defs.bzl", "rust_binary", "rust_library", "rust_doc")
+rust_library(
+    name="rust-client_lib",
+    srcs=["src/api/pokeclient.rs"]
+)
+
+rust_binary(
+    name = "rust-client",
+    srcs = ["src/client.rs"],
+    deps = [
+        ":rust-client_lib",
+        ":serde_json",
+        ":reqwest",
+        ":serde",
+        ":derive",
+    ],
+)
+
+rust_doc(
+    name = "rust-client_doc",
+    crate = ":rust-client",
+)
